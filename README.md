@@ -176,10 +176,10 @@ I built this to help my girlfriend learn piano, but discovered how fun it is to 
 
 MIT License - Feel free to use, modify, and share!
 
-## 🤝 Contributing
+## 🤝 Contributing and Support
 
 Issues and PRs welcome! This is a learning project that grew beyond expectations.
-
+<pre><code><span style="font-size:150%;">Happy about a ☕️ <a href="https://ko-fi.com/mikelbahn">https://ko-fi.com/mikelbahn</a> if you like the project.</span></code></pre>
 ---
 
 **🎶 Happy practicing! Remember: the LEDs are just feedback—the real magic happens in your hands. 🎹✨**

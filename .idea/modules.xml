@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/reactive-sound.iml" filepath="$PROJECT_DIR$/.idea/reactive-sound.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Music-Trainer-Suite.iml" filepath="$PROJECT_DIR$/.idea/Music-Trainer-Suite.iml" />
     </modules>
   </component>
 </project>
