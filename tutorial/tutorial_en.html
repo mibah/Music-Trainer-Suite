@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Trainer Suite - Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 20px 40px;
+            border-bottom: 3px solid #667eea;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #764ba2;
+        }
+
+        main {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.6em;
+            margin: 30px 0 15px 0;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.3em;
+            margin: 20px 0 10px 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .success-box {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        .module-card {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .module-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .pipeline-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .architecture-diagram {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .component {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .arrow {
+            font-size: 2em;
+            color: #667eea;
+            margin: 0 10px;
+        }
+
+        footer {
+            background: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .comparison-card {
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 25px;
+            background: white;
+        }
+
+        .comparison-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .comparison-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .comparison-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .comparison-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-table {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .pipeline-step {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎹 Music Trainer Suite</h1>
+            <p>AI-Powered Musical Learning with Real-Time Visual Feedback</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#software">Software Trainers</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#arduino">Arduino LED System</a></li>
+                <li><a href="#integration">Full Integration</a></li>
+                <li><a href="#setup">Setup Guide</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="overview">
+                <h2>📋 Project Overview</h2>
+
+                <p>The <strong>Music Trainer Suite</strong> is a collection of interactive musical learning tools that combine AI-powered audio analysis with visual feedback systems. This project enables musicians to practice melodies, chords, and arpeggios with real-time pitch detection and optional LED strip visualization.</p>
+
+                <div class="info-box">
+                    <strong>🎯 Key Innovation:</strong> By implementing both MIDI-based and audio-based detection, this suite is accessible to everyone—whether you have a MIDI keyboard or just an acoustic instrument and a microphone.
+                </div>
+
+                <div class="architecture-diagram">
+                    <div class="component">Audio Input</div>
+                    <span class="arrow">→</span>
+                    <div class="component">AI Analysis</div>
+                    <span class="arrow">→</span>
+                    <div class="component">Visual Feedback</div>
+                    <span class="arrow">→</span>
+                    <div class="component">Learning</div>
+                </div>
+
+                <h3>Project Structure</h3>
+                <div class="comparison-table">
+                    <div class="comparison-card">
+                        <h4>Software Modules</h4>
+                        <ul>
+                            <li>Full Keyboard Trainer (88 keys)</li>
+                            <li>Extended Trainer (single octave)</li>
+                            <li>Chord Trainer</li>
+                            <li>Arpeggio Trainer</li>
+                            <li>Arduino-Integrated Version</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Hardware Components</h4>
+                        <ul>
+                            <li>Arduino LED Controller</li>
+                            <li>WS2811 LED Strip (60 LEDs)</li>
+                            <li>Ultrasonic Motion Sensor</li>
+                            <li>Touch Brightness Controls</li>
+                            <li>Optional: MIDI Keyboard</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="software">
+                <h2>🎼 Software Trainer Modules</h2>
+
+                <p>Each trainer module is a standalone application with its own pedagogical focus. All modules share a common architecture but implement different detection strategies based on musical structure.</p>
+
+                <div class="module-card">
+                    <h4>🎹 Full Keyboard Trainer</h4>
+                    <p><strong>Location:</strong> <code>music_trainer_full_keyboard/</code></p>
+                    <p><strong>Purpose:</strong> Learn melodies note-by-note with visual feedback across the entire 88-key piano range.</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Visual piano keyboard spanning C1 to C8</li>
+                        <li>Real-time pitch detection using Aubio</li>
+                        <li>Highlighted target notes in red</li>
+                        <li>Configurable tolerance and timeout settings</li>
+                        <li>Lives system for practice management</li>
+                    </ul>
+                    <p><strong>Use Case:</strong> Perfect for practicing melodic sequences, songs, and scales.</p>
+                </div>
+
+                <div class="module-card">
+                    <h4>🎯 Extended Trainer (Single Octave)</h4>
+                    <p><strong>Location:</strong> <code>music_trainer_extended/</code></p>
+                    <p><strong>Purpose:</strong> Focused practice on a single octave for beginners or specific exercises.</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Simplified interface showing only one octave</li>
+                        <li>Larger key visualization for easier viewing</li>
+                        <li>Same pitch detection engine as full keyboard</li>
+                        <li>Ideal for focused practice sessions</li>
+                    </ul>
+                    <p><strong>Use Case:</strong> Great for beginners or practicing specific patterns in a limited range.</p>
+                </div>
+
+                <div class="module-card">
+                    <h4>🎵 Chord Trainer</h4>
+                    <p><strong>Location:</strong> <code>music_trainer_chords/</code></p>
+                    <p><strong>Purpose:</strong> Practice and recognize chord progressions through simultaneous note detection.</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Chromagram-based chord recognition using Librosa</li>
+                        <li>Template matching against known chord shapes</li>
+                        <li>Support for major, minor, and custom chords</li>
+                        <li>User-defined chord sequences at startup</li>
+                        <li>Confidence scoring for chord matches</li>
+                    </ul>
+                    <p><strong>Use Case:</strong> Learn chord progressions for songs, practice transitions, build muscle memory.</p>
+
+                    <div class="info-box">
+                        <strong>💡 Technical Note:</strong> Chord detection aggregates audio over 1-second windows and analyzes the frequency distribution across all 12 chromatic pitches using Short-Time Fourier Transform (STFT).
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4>🎸 Arpeggio Trainer</h4>
+                    <p><strong>Location:</strong> <code>music_trainer_arpeggios/</code></p>
+                    <p><strong>Purpose:</strong> Practice arpeggios (broken chords) where notes are played sequentially.</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Sequential note detection for arpeggio patterns</li>
+                        <li>Configurable arpeggio sequences</li>
+                        <li>Real-time pitch tracking with Aubio</li>
+                        <li>Progress through complex patterns step-by-step</li>
+                    </ul>
+                    <p><strong>Use Case:</strong> Master arpeggio patterns, improve finger dexterity, practice scales in broken form.</p>
+                </div>
+
+                <div class="module-card">
+                    <h4>🔵 Arduino-Integrated Full Keyboard</h4>
+                    <p><strong>Location:</strong> <code>music_trainer_full_keyboard_arduino/</code></p>
+                    <p><strong>Purpose:</strong> Full keyboard trainer with LED strip feedback for enhanced visual learning.</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>All features of the full keyboard trainer</li>
+                        <li>Real-time LED feedback on physical strip</li>
+                        <li>Green pulsing LED for target notes</li>
+                        <li>Color-coded feedback (green=correct, red=incorrect)</li>
+                        <li>Auto-detection of Arduino connection</li>
+                    </ul>
+                    <p><strong>Use Case:</strong> Immersive learning experience with synchronized on-screen and physical LED feedback.</p>
+                </div>
+            </section>
+
+            <section id="technology">
+                <h2>🤖 AI & Signal Processing Technology</h2>
+
+                <p>The Music Trainer Suite leverages state-of-the-art audio analysis libraries to convert sound waves into musical information in real-time.</p>
+
+                <h3>Core Technologies</h3>
+
+                <div class="pipeline-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Audio Capture - SoundDevice</h4>
+                        <p>Raw audio is captured from the system microphone at 44.1kHz (melody/arpeggio) or 22.05kHz (chord) sample rate. The audio stream is processed in real-time using callback functions that analyze small chunks (buffers) of audio data.</p>
+                    </div>
+                </div>
+
+                <div class="pipeline-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Pitch Detection - Aubio YIN Algorithm</h4>
+                        <p>For single-note detection (melodies, arpeggios), the <strong>Aubio</strong> library implements the YIN algorithm—a sophisticated time-domain fundamental frequency estimator. YIN analyzes the autocorrelation of the audio signal to identify the fundamental frequency (pitch) with high accuracy, even in the presence of harmonics and noise.</p>
+                        <pre><code>pitch_o = aubio.pitch("default", buf_size*2, buf_size, samplerate)
+pitch_o.set_unit("Hz")
+pitch = pitch_o(audio_samples)[0]  # Returns frequency in Hz</code></pre>
+                        <p><strong>Volume Gating:</strong> RMS (Root Mean Square) energy is calculated to ignore silence and background noise, ensuring only intentional notes are detected.</p>
+                    </div>
+                </div>
+
+                <div class="pipeline-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Chord Recognition - Librosa Chromagram</h4>
+                        <p>For chord detection, the system uses <strong>Librosa's</strong> chromagram feature extraction. This process involves:</p>
+                        <ol>
+                            <li><strong>STFT (Short-Time Fourier Transform):</strong> Converts time-domain audio to frequency domain</li>
+                            <li><strong>Chroma Feature Extraction:</strong> Maps all frequencies to 12 pitch classes (C, C#, D, ..., B)</li>
+                            <li><strong>Temporal Averaging:</strong> Aggregates chroma values over a 1-second window</li>
+                            <li><strong>Template Matching:</strong> Compares the chroma vector against predefined chord templates using dot product similarity</li>
+                        </ol>
+                        <pre><code>chroma = librosa.feature.chroma_stft(y=audio, sr=samplerate)
+chroma_mean = np.mean(chroma, axis=1)  # 12-dimensional vector
+score = np.dot(chroma_mean, chord_template)  # Match against template</code></pre>
+                        <p>This approach allows detection of multiple simultaneous notes, enabling chord recognition.</p>
+                    </div>
+                </div>
+
+                <div class="pipeline-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Frequency-to-Note Conversion</h4>
+                        <p>Detected frequencies are converted to musical note names using the equal temperament formula:</p>
+                        <pre><code>semitones = 12 × log₂(freq / 440Hz)
+midi_number = 69 + round(semitones)
+note = NOTE_NAMES[midi_number % 12] + octave</code></pre>
+                        <p>This maps continuous frequency values to discrete musical notes with octave information.</p>
+                    </div>
+                </div>
+
+                <div class="success-box">
+                    <strong>✨ Why This Matters:</strong> These AI-powered techniques enable accurate pitch detection from any sound source—acoustic instruments, voice, or electric instruments—without requiring MIDI connectivity. The system is instrument-agnostic and works in real-world conditions.
+                </div>
+
+                <h3>Detection Strategy Comparison</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>Algorithm</th>
+                            <th>Window Size</th>
+                            <th>Detection Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Full Keyboard / Arpeggio</td>
+                            <td>Aubio YIN</td>
+                            <td>1024 samples (~23ms)</td>
+                            <td>Single pitch, real-time</td>
+                        </tr>
+                        <tr>
+                            <td>Chord Trainer</td>
+                            <td>Librosa Chromagram</td>
+                            <td>1 second</td>
+                            <td>Multiple pitches, polyphonic</td>
+                        </tr>
+                        <tr>
+                            <td>Extended Trainer</td>
+                            <td>Aubio YIN</td>
+                            <td>1024 samples (~23ms)</td>
+                            <td>Single pitch, real-time</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="arduino">
+                <h2>💡 Arduino LED System</h2>
+
+                <p>The LED controller is a standalone project that enhances the learning experience with physical, ambient feedback. It operates independently with three distinct modes and can be integrated with the Python trainer for synchronized visual feedback.</p>
+
+                <div class="info-box">
+                    <strong>🔌 Independent Operation:</strong> The Arduino LED system works on its own without the Python trainers. It provides motion-reactive patterns, MIDI visualization (via separate MIDI script), and trainer integration when connected.
+                </div>
+
+                <h3>Hardware Setup</h3>
+
+                <div class="module-card">
+                    <h4>Components</h4>
+                    <ul>
+                        <li><strong>Arduino Board:</strong> Any Arduino with sufficient I/O (Uno, Nano, Mega)</li>
+                        <li><strong>WS2811 LED Strip:</strong> 60 individually addressable LEDs (5 octaves coverage)</li>
+                        <li><strong>HC-SR04 Ultrasonic Sensor:</strong> Motion detection (trigger pin 7, echo pin 8)</li>
+                        <li><strong>Touch Sensors:</strong> Two capacitive sensors for brightness control (pins 4 & 5)</li>
+                        <li><strong>Power Supply:</strong> 5V adequate for LED current draw</li>
+                    </ul>
+                </div>
+
+                <h3>Operating Modes</h3>
+
+                <div class="module-card">
+                    <h4>Mode 1: Motion-Activated Patterns</h4>
+                    <p><strong>Activation:</strong> Ultrasonic sensor detects movement within 120cm</p>
+                    <p><strong>Behavior:</strong> Displays dynamic LED patterns (rainbow, confetti, sinelon, juggle, BPM sync)</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Patterns auto-cycle every 10 seconds</li>
+                        <li>Stays active for 60 seconds after last motion</li>
+                        <li>Energy-efficient: LEDs off when no motion</li>
+                    </ul>
+                    <p><strong>Visual Indicator:</strong> White flash when entering mode</p>
+                </div>
+
+                <div class="module-card">
+                    <h4>Mode 2: MIDI Keyboard Visualization</h4>
+                    <p><strong>Activation:</strong> Serial commands from MIDI-to-LED Python script (not documented here)</p>
+                    <p><strong>Behavior:</strong> LEDs light up cyan-blue corresponding to pressed piano keys</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li>Real-time key press visualization</li>
+                        <li>Velocity-sensitive brightness</li>
+                        <li>Smooth fade-out when keys released</li>
+                        <li>60 LEDs map to MIDI notes 36-96 (C2 to C7)</li>
+                    </ul>
+                    <p><strong>Visual Indicator:</strong> White flash when entering mode</p>
+
+                    <div class="warning-box">
+                        <strong>⚠️ Note:</strong> This mode requires a separate Python script that reads MIDI input and sends LED commands to the Arduino. That script is not covered in this documentation but follows a similar architecture to the trainer integration.
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <h4>Mode 3: Melody Trainer Integration</h4>
+                    <p><strong>Activation:</strong> Automatic when running <code>music_trainer_full_keyboard_arduino</code></p>
+                    <p><strong>Behavior:</strong> Synchronized feedback with on-screen piano trainer</p>
+                    <p><strong>Features:</strong></p>
+                    <ul>
+                        <li><strong>Green pulsing LED:</strong> Indicates target note to play</li>
+                        <li><strong>Yellow-green flash:</strong> Correct note played ✓</li>
+                        <li><strong>Red flash:</strong> Incorrect note played ✗</li>
+                        <li>Feedback persists for 500ms for clear visibility</li>
+                    </ul>
+                    <p><strong>Visual Indicator:</strong> <span style="color: #667eea">★ Blue flash when entering mode ★</span></p>
+                </div>
+
+                <h3>Control Interface</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Control Method</th>
+                            <th>Effect</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Increase Brightness</td>
+                            <td>Tap touch sensor (pin 4)</td>
+                            <td>+3 brightness units</td>
+                        </tr>
+                        <tr>
+                            <td>Decrease Brightness</td>
+                            <td>Tap touch sensor (pin 5)</td>
+                            <td>-3 brightness units</td>
+                        </tr>
+                        <tr>
+                            <td>Cycle Modes</td>
+                            <td>Hold both sensors for 1 second</td>
+                            <td>Motion → MIDI → Trainer → Motion...</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Serial Communication Protocol</h3>
+
+                <p>The Arduino listens for commands over serial (115200 baud). This enables integration with Python scripts:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>Format</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Switch Mode</td>
+                            <td><code>M1\n</code>, <code>M2\n</code>, <code>M3\n</code></td>
+                            <td>Force mode switch (1=Motion, 2=MIDI, 3=Trainer)</td>
+                        </tr>
+                        <tr>
+                            <td>Set Target Note</td>
+                            <td><code>T&lt;index&gt;\n</code></td>
+                            <td>Light up LED at index as target (green pulse)</td>
+                        </tr>
+                        <tr>
+                            <td>Played Note Feedback</td>
+                            <td><code>P&lt;index&gt;,&lt;correct&gt;\n</code></td>
+                            <td>Show feedback at LED index (0=wrong/red, 1=correct/yellow-green)</td>
+                        </tr>
+                        <tr>
+                            <td>MIDI LED Control</td>
+                            <td><code>L&lt;index&gt;,&lt;brightness&gt;\n</code></td>
+                            <td>Set LED brightness (0-255) for MIDI mode</td>
+                        </tr>
+                        <tr>
+                            <td>Clear All</td>
+                            <td><code>C\n</code></td>
+                            <td>Turn off all LEDs</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="integration">
+                <h2>🔗 Full Integration: Software + Hardware</h2>
+
+                <p>The <code>music_trainer_full_keyboard_arduino</code> module combines the software trainer with the LED hardware, creating a fully immersive learning environment.</p>
+
+                <h3>Integration Architecture</h3>
+
+                <div class="architecture-diagram">
+                    <div style="margin: 20px 0;">
+                        <div class="component">Microphone Input</div>
+                        <span class="arrow">→</span>
+                        <div class="component">Aubio Pitch Detection</div>
+                    </div>
+                    <div style="margin: 20px 0;">
+                        <span class="arrow">↓</span>
+                    </div>
+                    <div style="margin: 20px 0;">
+                        <div class="component">Melody Trainer Logic</div>
+                    </div>
+                    <div style="margin: 20px 0;">
+
+<div style="margin: 20px 0;">
+    <span class="arrow">↓</span>
+</div>
+
+<div style="display: flex; justify-content: space-around; margin: 20px 0;">
+    <div class="component">Pygame Display</div>
+    <div class="component">Arduino LED Strip</div>
+</div>
+</div>
+            <h3>How It Works</h3>
+
+            <div class="pipeline-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Initialization</h4>
+                    <p>When the trainer starts with <code>use_arduino=True</code>, it auto-detects the Arduino via USB and sends command <code>M3\n</code> to switch to Trainer mode. The Arduino responds with a blue flash confirmation.</p>
+                </div>
+            </div>
+
+            <div class="pipeline-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Target Note Display</h4>
+                    <p>For each note in the melody, the trainer:</p>
+                    <ul>
+                        <li>Highlights the note on the on-screen piano (red)</li>
+                        <li>Sends <code>T&lt;led_index&gt;\n</code> to Arduino</li>
+                        <li>Arduino displays a green pulsing LED at the corresponding position</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pipeline-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Real-Time Feedback</h4>
+                    <p>As you play your instrument:</p>
+                    <ul>
+                        <li>Aubio detects the pitch and converts to note name</li>
+                        <li>Trainer compares detected note to target (±0.5 semitone tolerance)</li>
+                        <li>If correct: sends <code>P&lt;led_index&gt;,1\n</code> → yellow-green LED flash</li>
+                        <li>If wrong: sends <code>P&lt;led_index&gt;,0\n</code> → red LED flash</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pipeline-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Progression</h4>
+                    <p>When the correct note is played, the trainer advances to the next note automatically, clearing the previous LED and lighting up the new target.</p>
+                </div>
+            </div>
+
+            <h3>LED Mapping Details</h3>
+
+            <div class="info-box">
+                <strong>60 LEDs Cover 5 Octaves:</strong> The LED strip spans MIDI notes 36 to 96 (C2 to C7), with each note mapped linearly to LED indices 0-59. Middle C (C4, MIDI 60) corresponds to approximately LED index 24.
+            </div>
+
+            <h3>Advantages of Dual Feedback</h3>
+
+            <div class="comparison-table">
+                <div class="comparison-card">
+                    <h4>Screen Display</h4>
+                    <ul>
+                        <li>Precise note identification</li>
+                        <li>Musical context (full keyboard)</li>
+                        <li>Lives counter and score</li>
+                        <li>Portable (laptop only)</li>
+                    </ul>
+                </div>
+                <div class="comparison-card">
+                    <h4>LED Strip</h4>
+                    <ul>
+                        <li>Ambient, peripheral awareness</li>
+                        <li>No need to look at screen</li>
+                        <li>Physical, tactile environment</li>
+                        <li>Motivating color feedback</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <strong>🎯 The Best of Both Worlds:</strong> Looking at a screen can distract from your instrument. The LED strip provides feedback in your peripheral vision, letting you focus on your technique while still receiving clear visual cues.
+            </div>
+                    </div>
+        </section>
+
+        <section id="setup">
+            <h2>🚀 Setup Guide</h2>
+
+            <h3>Software Installation</h3>
+
+            <div class="pipeline-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Install Python Dependencies</h4>
+                    <pre><code>pip install pygame sounddevice aubio numpy librosa pyserial</code></pre>
+                </div>
+            </div>
+
+            <div class="pipeline-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Choose Your Trainer Module</h4>
+                    <p>Navigate to the appropriate directory:</p>
+                    <ul>
+                        <li><code>music_trainer_full_keyboard/</code> - Full 88-key piano</li>
+                        <li><code>music_trainer_extended/</code> - Single octave</li>
+                        <li><code>music_trainer_chords/</code> - Chord recognition</li>
+                        <li><code>music_trainer_arpeggios/</code> - Arpeggio sequences</li>
+                        <li><code>music_trainer_full_keyboard_arduino/</code> - With LED integration</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pipeline-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Run the Trainer</h4>
+                    <pre><code>python main.py</code></pre>
+                    <p>For Arduino-integrated version:</p>
+                    <pre><code># In main.py, enable Arduino support:
+trainer = MelodyTrainer(
+notes,
+use_arduino=True,
+arduino_port=None  # Auto-detect
+)</code></pre>
+</div>
+</div>
+            <h3>Arduino Setup (Optional)</h3>
+
+            <div class="pipeline-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Install Arduino IDE & FastLED Library</h4>
+                    <p>Download Arduino IDE from <a href="https://www.arduino.cc" target="_blank">arduino.cc</a></p>
+                    <p>Install FastLED library: Tools → Manage Libraries → Search "FastLED"</p>
+                </div>
+            </div>
+
+            <div class="pipeline-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Wire Hardware Components</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Arduino Pin</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>LED Strip Data</td>
+                                <td>Pin 9</td>
+                                <td>WS2811 data line</td>
+                            </tr>
+                            <tr>
+                                <td>Ultrasonic Trigger</td>
+                                <td>Pin 7</td>
+                                <td>Motion sensor</td>
+                            </tr>
+                            <tr>
+                                <td>Ultrasonic Echo</td>
+                                <td>Pin 8</td>
+                                <td>Motion sensor</td>
+                            </tr>
+                            <tr>
+                                <td>Brightness Up</td>
+                                <td>Pin 4</td>
+                                <td>Touch sensor</td>
+                            </tr>
+                            <tr>
+                                <td>Brightness Down</td>
+                                <td>Pin 5</td>
+                                <td>Touch sensor</td>
+                            </tr>
+                            <tr>
+                                <td>5V & GND</td>
+                                <td>Power rails</td>
+                                <td>Adequate PSU for LEDs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="pipeline-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Upload Arduino Code</h4>
+                    <p>Open <code>TripleModeLEDController.ino</code> in Arduino IDE and upload to your board.</p>
+                </div>
+            </div>
+
+            <div class="pipeline-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Test Connection</h4>
+                    <p>Open Serial Monitor (115200 baud). You should see:</p>
+                    <pre><code>=================================
+TRIPLE MODE LED CONTROLLER
+Modes: 1=Motion, 2=MIDI, 3=Trainer
+Current Mode: MOTION</code></pre>
+</div>
+</div>
+            <h3>Quick Start Examples</h3>
+
+            <div class="module-card">
+                <h4>Example 1: Practice a Simple Melody</h4>
+                <pre><code># main.py
+from melody_game import MelodyTrainer
+notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"]
+trainer = MelodyTrainer(notes)
+trainer.play()</code></pre>
+</div>
+            <div class="module-card">
+                <h4>Example 2: Practice Chords</h4>
+                <pre><code># For chord trainer
+Run and input chords at startup: C, Am, G, D
+python main.py
+Enter: C,Am,G,D</code></pre>
+            </div>
+
+            <div class="module-card">
+                <h4>Example 3: Arduino LED Integration</h4>
+                <pre><code># main.py in arduino folder
+from melody_game import MelodyTrainer
+notes = ["E4", "D4", "C4", "D4", "E4", "E4", "E4"]
+trainer = MelodyTrainer(
+notes,
+use_arduino=True  # Enable LED feedback
+)
+trainer.play()</code></pre>
+</div>
+            <h3>Troubleshooting</h3>
+
+            <div class="warning-box">
+                <h4>Common Issues</h4>
+                <ul>
+                    <li><strong>No audio detected:</strong> Check microphone permissions, adjust <code>volume_threshold</code> in audio.py</li>
+                    <li><strong>Wrong notes detected:</strong> Reduce background noise, increase <code>tolerance</code> parameter</li>
+                    <li><strong>Arduino not found:</strong> Specify port manually: <code>arduino_port='/dev/ttyUSB0'</code></li>
+                    <li><strong>LEDs not responding:</strong> Hold both touch sensors for 1s to cycle modes, check Serial Monitor for mode confirmation</li>
+                    <li><strong>Pygame window issues:</strong> Update pygame: <code>pip install --upgrade pygame</code></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="customization">
+            <h2>⚙️ Customization Options</h2>
+
+            <h3>Adjust Detection Parameters</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Location</th>
+                        <th>Purpose</th>
+                        <th>Default</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>tolerance</code></td>
+                        <td>MelodyTrainer init</td>
+                        <td>Semitone tolerance for correct note</td>
+                        <td>0.5</td>
+                    </tr>
+                    <tr>
+                        <td><code>timeout</code></td>
+                        <td>MelodyTrainer init</td>
+                        <td>Seconds to wait for each note</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td><code>volume_threshold</code></td>
+                        <td>PitchDetector init</td>
+                        <td>Minimum RMS to process audio</td>
+                        <td>0.01</td>
+                    </tr>
+                    <tr>
+                        <td><code>lives</code></td>
+                        <td>MelodyTrainer init</td>
+                        <td>Number of mistakes allowed</td>
+                        <td>1000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Add Custom Chords</h3>
+
+            <p>Edit <code>utils.py</code> in the chords folder:</p>
+
+            <pre><code>CHORD_NOTE_MAP = {
+"C": ["C4", "E4", "G4"],
+"Am": ["A3", "C4", "E4"],
+"G": ["G3", "B3", "D4"],
+"Cmaj7": ["C4", "E4", "G4", "B4"],  # Add custom chords
+# ... more chords
+}</code></pre>
+            <h3>Modify LED Colors</h3>
+
+            <p>In Arduino code, adjust these constants:</p>
+
+            <pre><code>#define TRAINER_TARGET_HUE    96   // Target note color (0-255)
+#define TRAINER_CORRECT_HUE   64   // Correct feedback color
+#define TRAINER_WRONG_HUE     0    // Wrong feedback color
+// Hue values: 0=Red, 32=Orange, 64=Yellow, 96=Green, 160=Blue, 192=Purple</code></pre>
+</section>
+        <section id="future">
+            <h2>🔮 Future Enhancements</h2>
+
+            <div class="comparison-table">
+                <div class="comparison-card">
+                    <h4>Potential Software Features</h4>
+                    <ul>
+                        <li>Real-Time integration of harmonic elements (e.g. Chords)</li>
+                        <li>Rhythm detection and timing feedback</li>
+                        <li>Difficulty progression algorithms</li>
+                        <li>Song library with popular melodies</li>
+                        <li>Progress tracking and statistics</li>
+                    </ul>
+                </div>
+                <div class="comparison-card">
+                    <h4>Potential Hardware Features</h4>
+                    <ul>
+                        <li>Wireless Arduino connection (Bluetooth or WLAN)</li>
+                        <li>Longer LED strips for full 88-key coverage</li>
+                        <li>OLED display for standalone operation</li>
+                        <li>Battery-powered portable version</li>
+                        <li>Multi-color zones for hand position guidance</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>🎹 Music Trainer Suite - Combining AI, Audio Processing, and Physical Computing for Musical Learning</p>
+        <p>Built with Python, Aubio, Librosa, Pygame, Arduino, and FastLED</p>
+    </footer>
+</div>
+</body>
+</html></parameter>
